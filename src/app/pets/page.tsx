@@ -18,6 +18,7 @@ export default function PetsPage() {
   const { isInitialized, isAuthenticated } = useAuthInit();
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<PetType | 'all'>('all');
+  const [viewMode, setViewMode] = useState<'grid' | 'flex'>('grid');
   const [editingPet, setEditingPet] = useState<Pet | null>(null);
   const [editForm, setEditForm] = useState({
     name: '',
@@ -77,9 +78,39 @@ export default function PetsPage() {
     });
   };
 
+  const getPetTypeIcon = (type: string) => {
+    switch (type) {
+      case 'dog':
+        return '🐕';
+      case 'cat':
+        return '🐱';
+      case 'bird':
+        return '🐦';
+      case 'fish':
+        return '🐠';
+      default:
+        return '🐾';
+    }
+  };
+
+  const getPetTypeLabel = (type: string) => {
+    switch (type) {
+      case 'dog':
+        return 'Собака';
+      case 'cat':
+        return 'Кіт';
+      case 'bird':
+        return 'Птах';
+      case 'fish':
+        return 'Риба';
+      default:
+        return 'Тварина';
+    }
+  };
+
   const filteredPets = pets.filter((pet) => {
     const matchesSearch = pet.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         pet.breed.toLowerCase().includes(searchTerm.toLowerCase());
+      pet.breed.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = filterType === 'all' || pet.type === filterType;
     return matchesSearch && matchesType;
   });
@@ -96,7 +127,7 @@ export default function PetsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
-      
+
       <main className="container-responsive py-8">
         {/* Header */}
         <div className="mb-8">
@@ -118,7 +149,7 @@ export default function PetsPage() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          
+
           <div className="relative">
             <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <select
@@ -148,7 +179,7 @@ export default function PetsPage() {
 
         {/* Edit Modal */}
         {editingPet && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="fixed inset-0 bg-black/50 bg-opacity-50 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-lg p-6 w-full max-w-md">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-medium">Редагувати тварину</h3>
@@ -159,7 +190,7 @@ export default function PetsPage() {
                   <X className="h-5 w-5" />
                 </button>
               </div>
-              
+
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -169,10 +200,10 @@ export default function PetsPage() {
                     type="text"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={editForm.name}
-                    onChange={(e) => setEditForm({...editForm, name: e.target.value})}
+                    onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Тип
@@ -180,7 +211,7 @@ export default function PetsPage() {
                   <select
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={editForm.type}
-                    onChange={(e) => setEditForm({...editForm, type: e.target.value as PetType})}
+                    onChange={(e) => setEditForm({ ...editForm, type: e.target.value as PetType })}
                   >
                     <option value="dog">Собака</option>
                     <option value="cat">Кіт</option>
@@ -189,7 +220,7 @@ export default function PetsPage() {
                     <option value="other">Інше</option>
                   </select>
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Порода
@@ -198,10 +229,10 @@ export default function PetsPage() {
                     type="text"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={editForm.breed}
-                    onChange={(e) => setEditForm({...editForm, breed: e.target.value})}
+                    onChange={(e) => setEditForm({ ...editForm, breed: e.target.value })}
                   />
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -211,10 +242,10 @@ export default function PetsPage() {
                       type="number"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       value={editForm.age}
-                      onChange={(e) => setEditForm({...editForm, age: parseInt(e.target.value)})}
+                      onChange={(e) => setEditForm({ ...editForm, age: parseInt(e.target.value) })}
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Вага (кг)
@@ -224,11 +255,11 @@ export default function PetsPage() {
                       step="0.1"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       value={editForm.weight}
-                      onChange={(e) => setEditForm({...editForm, weight: parseFloat(e.target.value)})}
+                      onChange={(e) => setEditForm({ ...editForm, weight: parseFloat(e.target.value) })}
                     />
                   </div>
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Опис
@@ -237,11 +268,11 @@ export default function PetsPage() {
                     rows={3}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={editForm.description}
-                    onChange={(e) => setEditForm({...editForm, description: e.target.value})}
+                    onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
                   />
                 </div>
               </div>
-              
+
               <div className="flex justify-end space-x-3 mt-6">
                 <button
                   onClick={handleCancelEdit}
@@ -260,25 +291,101 @@ export default function PetsPage() {
           </div>
         )}
 
-        {/* Pets Grid */}
+        {/* View Toggle */}
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-lg font-medium text-gray-900">Список тварин</h2>
+          <div className="flex items-center space-x-2">
+            <span className="text-sm text-gray-600">Вид:</span>
+            <button
+              onClick={() => setViewMode('grid')}
+              className={`px-3 py-1 text-sm rounded-md transition-colors ${viewMode === 'grid'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+            >
+              Сітка
+            </button>
+            <button
+              onClick={() => setViewMode('flex')}
+              className={`px-3 py-1 text-sm rounded-md transition-colors ${viewMode === 'flex'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+            >
+              Список
+            </button>
+          </div>
+        </div>
+
+        {/* Pets Display */}
         {filteredPets.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-gray-500 text-lg">Тварин не знайдено</p>
             <p className="text-gray-400 mt-2">
-              {searchTerm || filterType !== 'all' 
+              {searchTerm || filterType !== 'all'
                 ? 'Спробуйте змінити пошуковий запит або фільтр'
                 : 'Додайте свою першу тварину'
               }
             </p>
           </div>
-        ) : (
-          <div className="grid-responsive gap-6">
+        ) : viewMode === 'grid' ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {filteredPets.map((pet) => (
-              <PetCard 
-                key={pet.id} 
-                pet={pet} 
+              <PetCard
+                key={pet.id}
+                pet={pet}
                 onEdit={() => handleEditPet(pet)}
               />
+            ))}
+          </div>
+        ) : (
+          <div className="flex flex-col space-y-4">
+            {filteredPets.map((pet) => (
+              <div key={pet.id} className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300">
+                <div className="flex items-center space-x-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center">
+                      <div className="text-2xl">{getPetTypeIcon(pet.type)}</div>
+                    </div>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900">{pet.name}</h3>
+                        <p className="text-sm text-gray-600">{pet.breed}</p>
+                      </div>
+                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        {getPetTypeLabel(pet.type)}
+                      </span>
+                    </div>
+                    <div className="flex items-center space-x-4 mt-2 text-sm text-gray-600">
+                      <span>Вік: {pet.age} {pet.age === 1 ? 'рік' : pet.age < 5 ? 'роки' : 'років'}</span>
+                      <span>Вага: {pet.weight} кг</span>
+                    </div>
+                    {pet.description && (
+                      <p className="text-sm text-gray-600 mt-2 line-clamp-2">{pet.description}</p>
+                    )}
+                  </div>
+                  <div className="flex flex-col space-y-2">
+                    <button
+                      onClick={() => handleEditPet(pet)}
+                      className="px-3 py-1 text-sm border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    >
+                      Редагувати
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (confirm('Ви впевнені, що хочете видалити цю тварину?')) {
+                          // Тут має бути логіка видалення
+                        }
+                      }}
+                      className="px-3 py-1 text-sm border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors"
+                    >
+                      Видалити
+                    </button>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         )}

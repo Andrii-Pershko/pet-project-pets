@@ -52,14 +52,14 @@ export function PetCard({ pet, onEdit }: PetCardProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col">
       {/* Pet Image */}
-      <div className="h-32 sm:h-40 lg:h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
+      <div className="h-32 sm:h-40 lg:h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center flex-shrink-0">
         <div className="text-4xl sm:text-5xl lg:text-6xl">{getPetTypeIcon(pet.type)}</div>
       </div>
 
       {/* Pet Info */}
-      <div className="p-4 sm:p-6">
+      <div className="p-4 sm:p-6 flex-1 flex flex-col">
         <div className="flex items-start justify-between mb-3 sm:mb-4">
           <div>
             <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1">{pet.name}</h3>
@@ -86,7 +86,7 @@ export function PetCard({ pet, onEdit }: PetCardProps) {
         </div>
 
         {/* Actions */}
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-2 mt-auto">
           <div className="grid grid-cols-2 gap-2">
             <button
               onClick={onEdit}
