@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuthInit } from '@/hooks/useAuthInit';
 import { Navigation } from '@/components/Navigation';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
-import { ArrowLeft, Calendar, Clock, MapPin, Phone, Mail } from 'lucide-react';
+import { ArrowLeft, Clock, MapPin, Phone, Mail } from 'lucide-react';
 import Link from 'next/link';
 
 export default function AppointmentsPage() {

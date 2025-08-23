@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { RootState } from '@/store/types';
 import { login } from '@/store/slices/userSlice';
 import { setPets } from '@/store/slices/petsSlice';
 
 export function useAuthInit() {
   const dispatch = useAppDispatch();
-  const isAuthenticated = useAppSelector((state) => (state as any).user.isAuthenticated);
-  const pets = useAppSelector((state) => (state as any).pets.pets);
+  const isAuthenticated = useAppSelector((state: RootState) => state.user.isAuthenticated);
+  const pets = useAppSelector((state: RootState) => state.pets.pets);
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {

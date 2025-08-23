@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import { RootState } from '@/store/types';
 import { useAuthInit } from '@/hooks/useAuthInit';
 import { updateUser } from '@/store/slices/userSlice';
 import { Navigation } from '@/components/Navigation';
@@ -13,7 +14,7 @@ import { User, Mail, Phone, MapPin, Camera, Save, Edit3 } from 'lucide-react';
 export default function ProfilePage() {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => (state as any).user.user);
+  const user = useAppSelector((state: RootState) => state.user.user);
   const { isInitialized, isAuthenticated } = useAuthInit();
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -133,7 +134,7 @@ export default function ProfilePage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                      Повне ім'я
+                      Повне ім&apos;я
                     </label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />

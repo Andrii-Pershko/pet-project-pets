@@ -3,19 +3,20 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import { RootState } from '@/store/types';
 import { useAuthInit } from '@/hooks/useAuthInit';
 import { updatePet } from '@/store/slices/petsSlice';
 import { Navigation } from '@/components/Navigation';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 import { Pet, PetType } from '@/store/slices/petsSlice';
-import { ArrowLeft, Save, Camera } from 'lucide-react';
+import { ArrowLeft, Save } from 'lucide-react';
 import Link from 'next/link';
 
 export default function EditPetPage() {
   const router = useRouter();
   const params = useParams();
   const dispatch = useAppDispatch();
-  const pets = useAppSelector((state) => (state as any).pets.pets);
+  const pets = useAppSelector((state: RootState) => state.pets.pets);
   const { isInitialized, isAuthenticated } = useAuthInit();
   const [isLoading, setIsLoading] = useState(false);
   
@@ -146,7 +147,7 @@ export default function EditPetPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Ім'я тварини *
+                    Ім&apos;я тварини *
                   </label>
                   <input
                     type="text"
@@ -156,7 +157,7 @@ export default function EditPetPage() {
                     value={formData.name}
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
-                    placeholder="Введіть ім'я"
+                    placeholder="Введіть ім&apos;я"
                   />
                 </div>
 

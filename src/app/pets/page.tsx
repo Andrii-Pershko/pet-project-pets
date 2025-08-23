@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppSelector } from '@/store/hooks';
+import { RootState } from '@/store/types';
 import { useAuthInit } from '@/hooks/useAuthInit';
 import { Navigation } from '@/components/Navigation';
 import { PetCard } from '@/components/PetCard';
@@ -13,7 +14,7 @@ import Link from 'next/link';
 
 export default function PetsPage() {
   const router = useRouter();
-  const pets = useAppSelector((state) => (state as any).pets.pets);
+  const pets = useAppSelector((state: RootState) => state.pets.pets);
   const { isInitialized, isAuthenticated } = useAuthInit();
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<PetType | 'all'>('all');
@@ -81,7 +82,7 @@ export default function PetsPage() {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="Пошук за ім'ям або породою..."
+                  placeholder="Пошук за ім&apos;ям або породою..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full input-responsive !pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuthInit } from '@/hooks/useAuthInit';
 import { Navigation } from '@/components/Navigation';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
-import { ArrowLeft, Calendar, AlertTriangle, CheckCircle, Clock } from 'lucide-react';
+import { ArrowLeft, AlertTriangle, CheckCircle, Clock } from 'lucide-react';
 import Link from 'next/link';
 
 export default function VaccinationPage() {
@@ -176,7 +176,7 @@ export default function VaccinationPage() {
             <h3 className="text-lg font-medium text-gray-900 mb-4">Інформація про вакцинацію</h3>
             <div className="prose prose-sm text-gray-600">
               <p className="mb-3">
-                Регулярна вакцинація - це важливий крок для захисту здоров'я ваших домашніх улюбленців. 
+                Регулярна вакцинація - це важливий крок для захисту здоров&apos;я ваших домашніх улюбленців. 
                 Вона допомагає запобігти серйозним захворюванням та забезпечує довге та здорове життя.
               </p>
               <p className="mb-3">

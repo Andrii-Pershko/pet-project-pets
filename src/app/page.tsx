@@ -5,7 +5,7 @@ import { useAuthInit } from '@/hooks/useAuthInit';
 import { Navigation } from '@/components/Navigation';
 import { LoginForm } from '@/components/LoginForm';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
-import { PawPrint, Heart, Shield, Users } from 'lucide-react';
+import { PawPrint, Heart, Shield } from 'lucide-react';
 
 export default function HomePage() {
   const router = useRouter();
@@ -51,7 +51,7 @@ export default function HomePage() {
             </h1>
             <p className="mt-4 sm:mt-6 text-responsive-lg leading-8 text-gray-600">
               Ваша надійна система управління домашніми тваринами.
-              Відстежуйте здоров'я, плануйте візити до ветеринара та
+              Відстежуйте здоров&apos;я, плануйте візити до ветеринара та
               зберігайте всю важливу інформацію в одному місці.
             </p>
           </div>
@@ -86,11 +86,11 @@ export default function HomePage() {
               <div className="flex flex-col">
                 <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
                   <Heart className="h-5 w-5 flex-none text-blue-600" />
-                  Здоров'я та догляд
+                  Здоров&apos;я та догляд
                 </dt>
                 <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
                   <p className="flex-auto">
-                    Відстежуйте вагу, вік та стан здоров'я ваших тварин.
+                    Відстежуйте вагу, вік та стан здоров&apos;я ваших тварин.
                     Плануйте регулярні візити до ветеринара та вакцинації.
                   </p>
                 </dd>

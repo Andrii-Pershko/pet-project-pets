@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Navigation } from '@/components/Navigation';
-import { Home, ArrowLeft, Search, AlertTriangle } from 'lucide-react';
+import { Home, Search, AlertTriangle } from 'lucide-react';
 
 export default function NotFound() {
   return (

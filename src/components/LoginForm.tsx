@@ -3,12 +3,13 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import { RootState } from '@/store/types';
 import { login } from '@/store/slices/userSlice';
 import { User, Lock, Eye, EyeOff } from 'lucide-react';
 
 export function LoginForm() {
   const router = useRouter();
-  const { isAuthenticated } = useAppSelector((state) => (state as any).user);
+  const { isAuthenticated } = useAppSelector((state: RootState) => state.user);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);

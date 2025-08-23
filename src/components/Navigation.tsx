@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import { RootState } from '@/store/types';
 import { logout } from '@/store/slices/userSlice';
 import { Home, PawPrint, User, LogOut, Plus, Menu, X } from 'lucide-react';
 
@@ -11,8 +12,8 @@ export function Navigation() {
   const pathname = usePathname();
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const isAuthenticated = useAppSelector((state) => (state as any).user.isAuthenticated);
-  const user = useAppSelector((state) => (state as any).user.user);
+  const isAuthenticated = useAppSelector((state: RootState) => state.user.isAuthenticated);
+  const user = useAppSelector((state: RootState) => state.user.user);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
 
