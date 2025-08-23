@@ -1,0 +1,11 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
+  "/appointments/page": "/appointments",
+  "/pets/[id]/edit/page": "/pets/[id]/edit",
+  "/pets/add/page": "/pets/add",
+  "/pets/page": "/pets",
+  "/profile/page": "/profile",
+  "/vaccination/page": "/vaccination"
+}
