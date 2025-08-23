@@ -1,103 +1,140 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import { useRouter } from 'next/navigation';
+import { useAuthInit } from '@/hooks/useAuthInit';
+import { Navigation } from '@/components/Navigation';
+import { LoginForm } from '@/components/LoginForm';
+import { LoadingSpinner } from '@/components/LoadingSpinner';
+import { PawPrint, Heart, Shield, Users } from 'lucide-react';
+
+export default function HomePage() {
+  const router = useRouter();
+  const { isInitialized, isAuthenticated } = useAuthInit();
+
+
+  // Показуємо лоадер під час ініціалізації
+  if (!isInitialized) {
+    return <LoadingSpinner message="Завантаження..." />;
+  }
+
+  if (!isAuthenticated) {
+    return <LoginForm />;
+  }
+
+  const handleQuickAction = (action: string) => {
+    switch (action) {
+      case 'add-pet':
+        router.push('/pets/add');
+        break;
+      case 'vet-appointment':
+        router.push('/appointments');
+        break;
+      case 'vaccination':
+        router.push('/vaccination');
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gray-50">
+      <Navigation />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <main className="container-responsive py-6 sm:py-8 lg:py-12">
+        {/* Hero Section */}
+        <div className="px-4 py-8 sm:py-12 lg:py-16 xl:py-20">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="heading-responsive text-gray-900">
+              Ласкаво просимо до{' '}
+              <span className="text-blue-600">PET Project</span>
+            </h1>
+            <p className="mt-4 sm:mt-6 text-responsive-lg leading-8 text-gray-600">
+              Ваша надійна система управління домашніми тваринами.
+              Відстежуйте здоров'я, плануйте візити до ветеринара та
+              зберігайте всю важливу інформацію в одному місці.
+            </p>
+          </div>
+        </div>
+
+        {/* Features Grid */}
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:text-center">
+            <h2 className="text-base font-semibold leading-7 text-blue-600">
+              Функції
+            </h2>
+            <p className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">
+              Все що потрібно для догляду за тваринами
+            </p>
+          </div>
+
+          <div className="mx-auto mt-12 sm:mt-16 lg:mt-20 max-w-2xl lg:max-w-none">
+            <dl className="grid max-w-xl grid-cols-1 gap-x-6 gap-y-12 sm:gap-x-8 sm:gap-y-16 lg:max-w-none lg:grid-cols-2">
+              <div className="flex flex-col">
+                <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+                  <PawPrint className="h-5 w-5 flex-none text-blue-600" />
+                  Управління тваринами
+                </dt>
+                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                  <p className="flex-auto">
+                    Додавайте, редагуйте та видаляйте інформацію про ваших домашніх улюбленців.
+                    Зберігайте фотографії, опис та особливості кожної тварини.
+                  </p>
+                </dd>
+              </div>
+
+              <div className="flex flex-col">
+                <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+                  <Heart className="h-5 w-5 flex-none text-blue-600" />
+                  Здоров'я та догляд
+                </dt>
+                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                  <p className="flex-auto">
+                    Відстежуйте вагу, вік та стан здоров'я ваших тварин.
+                    Плануйте регулярні візити до ветеринара та вакцинації.
+                  </p>
+                </dd>
+              </div>
+
+            </dl>
+          </div>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16">
+          <div className="bg-white shadow rounded-lg p-4 sm:p-6">
+            <h3 className="text-lg sm:text-xl font-medium text-gray-900 mb-4 text-center">
+              Швидкі дії
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+              <button
+                onClick={() => handleQuickAction('add-pet')}
+                className="btn-responsive cursor-pointer flex items-center justify-center border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-blue-50 transition-colors"
+              >
+                <PawPrint className="h-4 w-4 mr-2" />
+                <span className="hidden sm:inline">Додати тварину</span>
+                <span className="sm:hidden">Додати</span>
+              </button>
+              <button
+                onClick={() => handleQuickAction('appointments')}
+                className="btn-responsive cursor-pointer flex items-center justify-center border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-blue-50 transition-colors"
+              >
+                <Heart className="h-4 w-4 mr-2" />
+                <span className="hidden sm:inline">Записати до ветеринара</span>
+                <span className="sm:hidden">Ветеринар</span>
+              </button>
+              <button
+                onClick={() => handleQuickAction('vaccination')}
+                className="btn-responsive cursor-pointer flex items-center justify-center border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-blue-50 transition-colors"
+              >
+                <Shield className="h-4 w-4 mr-2" />
+                <span className="hidden sm:inline">Планувати вакцинацію</span>
+                <span className="sm:hidden">Вакцинація</span>
+              </button>
+            </div>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }

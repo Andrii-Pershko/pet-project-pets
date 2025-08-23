@@ -5,6 +5,167 @@
   --foreground: #171717;
 }
 
+/* Глобальні стилі для респонсивності */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Респонсивні контейнери */
+.container-responsive {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Респонсивні сітки */
+.grid-responsive {
+  @apply grid gap-4 sm:gap-6 lg:gap-8;
+}
+
+/* Респонсивні тексти */
+.text-responsive {
+  @apply text-sm sm:text-base lg:text-lg;
+}
+
+.text-responsive-lg {
+  @apply text-lg sm:text-xl lg:text-2xl;
+}
+
+.text-responsive-xl {
+  @apply text-xl sm:text-2xl lg:text-3xl;
+}
+
+/* Респонсивні відступи */
+.p-responsive {
+  @apply p-4 sm:p-6 lg:px-8;
+}
+
+.py-responsive {
+  @apply py-4 sm:py-6 lg:py-8;
+}
+
+.px-responsive {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+/* Респонсивні кнопки */
+.btn-responsive {
+  @apply px-3 py-2 sm:px-4 sm:py-2 lg:px-6 lg:py-3 text-sm sm:text-base;
+}
+
+/* Респонсивні форми */
+.form-responsive {
+  @apply space-y-4 sm:space-y-6;
+}
+
+.input-responsive {
+  @apply w-full px-8 py-2 sm:px-4 sm:py-3 text-sm sm:text-base;
+}
+
+/* Мобільна навігація */
+.mobile-nav {
+  @apply fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 lg:hidden;
+}
+
+.desktop-nav {
+  @apply hidden lg:block;
+}
+
+/* Адаптивні картки */
+.card-responsive {
+  @apply p-4 sm:p-6 lg:p-8;
+}
+
+/* Адаптивні таблиці */
+.table-responsive {
+  @apply overflow-x-auto;
+}
+
+/* Адаптивні зображення */
+.img-responsive {
+  @apply w-full h-auto object-cover;
+}
+
+/* Адаптивні іконки */
+.icon-responsive {
+  @apply w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7;
+}
+
+/* Адаптивні заголовки */
+.heading-responsive {
+  @apply text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold;
+}
+
+.subheading-responsive {
+  @apply text-lg sm:text-xl lg:text-2xl font-semibold;
+}
+
+/* Адаптивні списки */
+.list-responsive {
+  @apply space-y-2 sm:space-y-3 lg:space-y-4;
+}
+
+/* Адаптивні секції */
+.section-responsive {
+  @apply py-8 sm:py-12 lg:py-16;
+}
+
+/* Адаптивні сітки */
+.grid-cols-responsive {
+  @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}
+
+/* Мобільна оптимізація */
+@media (max-width: 640px) {
+  .container-responsive {
+    @apply px-3;
+  }
+
+  .card-responsive {
+    @apply p-3;
+  }
+
+  .btn-responsive {
+    @apply px-2 py-1.5 text-xs;
+  }
+
+  .text-responsive {
+    @apply text-xs;
+  }
+
+  .text-responsive-lg {
+    @apply text-sm;
+  }
+
+  .text-responsive-xl {
+    @apply text-base;
+  }
+
+  .heading-responsive {
+    @apply text-lg;
+  }
+
+  .subheading-responsive {
+    @apply text-base;
+  }
+}
+
+/* Адаптивні флекс-контейнери */
+.flex-responsive {
+  @apply flex flex-col sm:flex-row;
+}
+
+.flex-wrap-responsive {
+  @apply flex-wrap justify-center sm:justify-start;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -23,4 +184,26 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom styles for inputs */
+input,
+select,
+textarea {
+  color: #1f2937 !important;
+  /* text-gray-800 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #6b7280 !important;
+  /* text-gray-500 */
+}
+
+/* Dark text for disabled inputs */
+input:disabled,
+select:disabled,
+textarea:disabled {
+  color: #374151 !important;
+  /* text-gray-700 */
 }
