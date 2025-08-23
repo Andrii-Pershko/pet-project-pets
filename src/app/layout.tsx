@@ -9,9 +9,9 @@ export const metadata: Metadata = {
   title: 'PET Project - Управління тваринами',
   description: 'Веб-додаток для управління домашніми тваринами',
   icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
-    apple: '/favicon.svg',
+    icon: '/pet-project-pets/favicon.svg',
+    shortcut: '/pet-project-pets/favicon.svg',
+    apple: '/pet-project-pets/favicon.svg',
   },
   viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
   themeColor: '#3B82F6',
