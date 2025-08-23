@@ -2,15 +2,15 @@
 
 import { Pet } from '@/store/slices/petsSlice';
 import { Edit, Trash2, Heart, Calendar, Weight } from 'lucide-react';
-import Link from 'next/link';
 import { useAppDispatch } from '@/store/hooks';
 import { deletePet } from '@/store/slices/petsSlice';
 
 interface PetCardProps {
   pet: Pet;
+  onEdit?: () => void;
 }
 
-export function PetCard({ pet }: PetCardProps) {
+export function PetCard({ pet, onEdit }: PetCardProps) {
   const dispatch = useAppDispatch();
 
   const handleDelete = () => {
@@ -88,14 +88,14 @@ export function PetCard({ pet }: PetCardProps) {
         {/* Actions */}
         <div className="flex flex-col space-y-2">
           <div className="grid grid-cols-2 gap-2">
-            <Link
-              href={`/pets/${pet.id}/edit`}
+            <button
+              onClick={onEdit}
               className="w-full inline-flex items-center justify-center px-2 py-2 border border-gray-300 shadow-sm text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
             >
               <Edit className="h-3 w-3 mr-1" />
               <span className="hidden sm:inline">Редагувати</span>
               <span className="sm:hidden">Змінити</span>
-            </Link>
+            </button>
             <button 
               onClick={handleDelete}
               className="w-full inline-flex items-center justify-center px-2 py-2 border border-gray-300 shadow-sm text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors"
