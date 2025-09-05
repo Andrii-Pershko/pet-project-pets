@@ -37,7 +37,7 @@ export function LoginForm() {
         address: 'Київ, вул. Шевченка, 1',
         avatarUrl: '/api/placeholder/150/150',
       };
-      
+
       dispatch(login(mockUser));
       setIsLoading(false);
     }, 1000);
@@ -57,7 +57,7 @@ export function LoginForm() {
             Система управління домашніми тваринами
           </p>
         </div>
-        
+
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -93,7 +93,7 @@ export function LoginForm() {
               />
               <button
                 type="button"
-                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center z-10"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? (
@@ -109,7 +109,7 @@ export function LoginForm() {
             <button
               type="submit"
               disabled={isLoading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="h-[40px] flex items-center justify-center group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
