@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type VaccinationType = 'complex' | 'rabies' | 'parasites' | 'diseases' | 'other';
-export type VaccinationStatus = 'completed' | 'scheduled';
+type VaccinationType = 'complex' | 'rabies' | 'parasites' | 'diseases' | 'other';
+type VaccinationStatus = 'completed' | 'scheduled';
 
-export interface Vaccination {
+interface Vaccination {
   id: string;
   petId: string;
   petName: string;
