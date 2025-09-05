@@ -50,6 +50,7 @@ export function useAuthInit() {
             imageUrl: '/api/placeholder/300/200',
             description: 'Спокійний та ласкавий кіт',
             createdAt: new Date().toISOString(),
+            favorite: false,
           },
           {
             id: '2',
@@ -62,6 +63,7 @@ export function useAuthInit() {
             imageUrl: '/api/placeholder/300/200',
             description: 'Активний та розумний пес',
             createdAt: new Date().toISOString(),
+            favorite: true,
           },
           {
             id: '3',
@@ -74,6 +76,7 @@ export function useAuthInit() {
             imageUrl: '/api/placeholder/300/200',
             description: 'Говорливий папуга',
             createdAt: new Date().toISOString(),
+            favorite: false,
           },
         ];
         dispatch(setPets(mockPets));

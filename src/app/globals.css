@@ -66,7 +66,7 @@ body {
 }
 
 .input-responsive {
-  @apply w-full px-8 py-2 sm:px-4 sm:py-3 text-sm sm:text-base;
+  @apply w-full max-w-[50%] px-8 py-2 sm:px-4 sm:py-3 text-sm sm:text-base;
 }
 
 /* Мобільна навігація */
@@ -206,4 +206,10 @@ select:disabled,
 textarea:disabled {
   color: #374151 !important;
   /* text-gray-700 */
+}
+
+[type="button"]:focus,
+[type="button"]:focus-visible,
+[type="button"]:active {
+  outline: none;
 }

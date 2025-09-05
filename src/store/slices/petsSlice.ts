@@ -13,6 +13,7 @@ interface Pet {
   imageUrl?: string;
   description?: string;
   createdAt: string;
+  favorite?: boolean;
 }
 
 interface PetsState {
@@ -64,9 +65,18 @@ const petsSlice = createSlice({
         localStorage.setItem('pets', JSON.stringify(state.pets));
       }
     },
+    toggleFavorite: (state, action: PayloadAction<string>) => {
+      const pet = state.pets.find(pet => pet.id === action.payload);
+      if (pet) {
+        pet.favorite = !pet.favorite;
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('pets', JSON.stringify(state.pets));
+        }
+      }
+    },
   },
 });
 
-export const { setLoading, setError, addPet, updatePet, deletePet, setPets } = petsSlice.actions;
+export const { setLoading, setError, addPet, updatePet, deletePet, setPets, toggleFavorite } = petsSlice.actions;
 export type { PetsState, Pet, PetType };
 export default petsSlice.reducer;

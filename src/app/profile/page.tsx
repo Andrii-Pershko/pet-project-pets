@@ -18,7 +18,7 @@ export default function ProfilePage() {
   const { isInitialized, isAuthenticated } = useAuthInit();
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const [formData, setFormData] = useState({
     name: user?.name || '',
     email: user?.email || '',
@@ -85,7 +85,7 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
-      
+
       <main className="max-w-4xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 sm:px-0">
           <div className="mb-8">
@@ -121,7 +121,7 @@ export default function ProfilePage() {
                 {!isEditing && (
                   <button
                     onClick={() => setIsEditing(true)}
-                    className="btn-responsive inline-flex items-center justify-center border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                    className="btn-responsive inline-flex items-center justify-center border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors"
                   >
                     <Edit3 className="h-4 w-4 mr-2" />
                     <span className="hidden sm:inline">Редагувати</span>
@@ -138,20 +138,19 @@ export default function ProfilePage() {
                     </label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                                             <input
-                         type="text"
-                         id="name"
-                         name="name"
-                         required
-                         disabled={!isEditing}
-                         value={formData.name}
-                         onChange={handleInputChange}
-                         className={`w-full pl-10 pr-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                           isEditing 
-                             ? 'border-gray-300 bg-white text-gray-900' 
-                             : 'border-gray-200 bg-gray-50 text-gray-700'
-                         }`}
-                       />
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        disabled={!isEditing}
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className={`w-full pl-10 pr-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:border-transparent ${isEditing
+                            ? 'border-gray-300 bg-white text-gray-900'
+                            : 'border-gray-200 bg-gray-50 text-gray-700'
+                          }`}
+                      />
                     </div>
                   </div>
 
@@ -161,20 +160,19 @@ export default function ProfilePage() {
                     </label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                                             <input
-                         type="email"
-                         id="email"
-                         name="email"
-                         required
-                         disabled={!isEditing}
-                         value={formData.email}
-                         onChange={handleInputChange}
-                         className={`w-full pl-10 pr-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                           isEditing 
-                             ? 'border-gray-300 bg-white text-gray-900' 
-                             : 'border-gray-200 bg-gray-50 text-gray-700'
-                         }`}
-                       />
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        disabled={!isEditing}
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className={`w-full pl-10 pr-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:border-transparent ${isEditing
+                            ? 'border-gray-300 bg-white text-gray-900'
+                            : 'border-gray-200 bg-gray-50 text-gray-700'
+                          }`}
+                      />
                     </div>
                   </div>
 
@@ -184,20 +182,19 @@ export default function ProfilePage() {
                     </label>
                     <div className="relative">
                       <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                                             <input
-                         type="tel"
-                         id="phone"
-                         name="phone"
-                         disabled={!isEditing}
-                         value={formData.phone}
-                         onChange={handleInputChange}
-                         className={`w-full pl-10 pr-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                           isEditing 
-                             ? 'border-gray-300 bg-white text-gray-900' 
-                             : 'border-gray-200 bg-gray-50 text-gray-700'
-                         }`}
-                         placeholder="+380991234567"
-                       />
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        disabled={!isEditing}
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        className={`w-full pl-10 pr-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:border-transparent ${isEditing
+                            ? 'border-gray-300 bg-white text-gray-900'
+                            : 'border-gray-200 bg-gray-50 text-gray-700'
+                          }`}
+                        placeholder="+380991234567"
+                      />
                     </div>
                   </div>
 
@@ -207,20 +204,19 @@ export default function ProfilePage() {
                     </label>
                     <div className="relative">
                       <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                                             <input
-                         type="text"
-                         id="address"
-                         name="address"
-                         disabled={!isEditing}
-                         value={formData.address}
-                         onChange={handleInputChange}
-                         className={`w-full pl-10 pr-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                           isEditing 
-                             ? 'border-gray-300 bg-white text-gray-900' 
-                             : 'border-gray-200 bg-gray-50 text-gray-700'
-                         }`}
-                         placeholder="Введіть адресу"
-                       />
+                      <input
+                        type="text"
+                        id="address"
+                        name="address"
+                        disabled={!isEditing}
+                        value={formData.address}
+                        onChange={handleInputChange}
+                        className={`w-full pl-10 pr-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:border-transparent ${isEditing
+                            ? 'border-gray-300 bg-white text-gray-900'
+                            : 'border-gray-200 bg-gray-50 text-gray-700'
+                          }`}
+                        placeholder="Введіть адресу"
+                      />
                     </div>
                   </div>
                 </div>
@@ -231,14 +227,14 @@ export default function ProfilePage() {
                     <button
                       type="button"
                       onClick={handleCancel}
-                      className="btn-responsive inline-flex items-center justify-center border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                      className="btn-responsive inline-flex items-center justify-center border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors"
                     >
                       Скасувати
                     </button>
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="btn-responsive inline-flex items-center justify-center border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                      className="btn-responsive inline-flex items-center justify-center border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
                       {isLoading ? (
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
@@ -265,7 +261,7 @@ export default function ProfilePage() {
                   label="Email сповіщення"
                   description="Отримувати сповіщення про важливі події"
                 />
-                
+
                 <Toggle
                   enabled={notifications.sms}
                   onToggle={(enabled) => setNotifications(prev => ({ ...prev, sms: enabled }))}

@@ -2,18 +2,19 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAppSelector } from '@/store/hooks';
+import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { RootState } from '@/store/types';
 import { useAuthInit } from '@/hooks/useAuthInit';
 import { Navigation } from '@/components/Navigation';
 import { PetCard } from '@/components/PetCard';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
-import { Pet, PetType } from '@/store/slices/petsSlice';
+import { Pet, PetType, updatePet, deletePet, toggleFavorite } from '@/store/slices/petsSlice';
 import { Search, Filter, Plus, X } from 'lucide-react';
 import Link from 'next/link';
 
 export default function PetsPage() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const pets = useAppSelector((state: RootState) => state.pets.pets);
   const { isInitialized, isAuthenticated } = useAuthInit();
   const [searchTerm, setSearchTerm] = useState('');
@@ -53,7 +54,17 @@ export default function PetsPage() {
 
   const handleSaveEdit = () => {
     if (editingPet) {
-      // Тут має бути логіка збереження через Redux
+      const updatedPet: Pet = {
+        ...editingPet,
+        name: editForm.name,
+        type: editForm.type,
+        breed: editForm.breed,
+        age: editForm.age,
+        weight: editForm.weight,
+        description: editForm.description
+      };
+      
+      dispatch(updatePet(updatedPet));
       setEditingPet(null);
       setEditForm({
         name: '',
@@ -376,7 +387,7 @@ export default function PetsPage() {
                     <button
                       onClick={() => {
                         if (confirm('Ви впевнені, що хочете видалити цю тварину?')) {
-                          // Тут має бути логіка видалення
+                          dispatch(deletePet(pet.id));
                         }
                       }}
                       className="px-3 py-1 text-sm border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors"

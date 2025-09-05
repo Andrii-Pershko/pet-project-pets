@@ -3,7 +3,7 @@
 import { Pet } from '@/store/slices/petsSlice';
 import { Edit, Trash2, Heart, Calendar, Weight } from 'lucide-react';
 import { useAppDispatch } from '@/store/hooks';
-import { deletePet } from '@/store/slices/petsSlice';
+import { deletePet, toggleFavorite } from '@/store/slices/petsSlice';
 
 interface PetCardProps {
   pet: Pet;
@@ -19,6 +19,10 @@ export function PetCard({ pet, onEdit }: PetCardProps) {
       dispatch(deletePet(pet.id));
       console.log('Тварину видалено з Redux store');
     }
+  };
+
+  const handleToggleFavorite = () => {
+    dispatch(toggleFavorite(pet.id));
   };
 
   const getPetTypeIcon = (type: string) => {
@@ -90,25 +94,33 @@ export function PetCard({ pet, onEdit }: PetCardProps) {
           <div className="grid grid-cols-2 gap-2">
             <button
               onClick={onEdit}
-              className="w-full inline-flex items-center justify-center px-2 py-2 border border-gray-300 shadow-sm text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+              className="w-full inline-flex items-center justify-center px-2 py-2 border border-gray-300 shadow-sm text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-offset-2 focus:ring-blue-500 transition-colors"
             >
               <Edit className="h-3 w-3 mr-1" />
               <span className="hidden sm:inline">Редагувати</span>
               <span className="sm:hidden">Змінити</span>
             </button>
-            <button 
+            <button
               onClick={handleDelete}
-              className="w-full inline-flex items-center justify-center px-2 py-2 border border-gray-300 shadow-sm text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors"
+              className="w-full inline-flex items-center justify-center px-2 py-2 border border-gray-300 shadow-sm text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-offset-2 focus:ring-red-500 transition-colors"
             >
               <Trash2 className="h-3 w-3 mr-1" />
               <span className="hidden sm:inline">Видалити</span>
               <span className="sm:hidden">Видалити</span>
             </button>
           </div>
-          
-          <button className="w-full inline-flex items-center justify-center p-2 border border-transparent rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors">
-            <Heart className="h-4 w-4 mr-2" />
-            <span className="text-xs font-medium">Улюблена</span>
+
+          <button
+            onClick={handleToggleFavorite}
+            className={`w-full inline-flex items-center justify-center p-2 border border-transparent rounded-md shadow-sm text-white focus:outline-none focus:ring-offset-2 focus:ring-red-500 transition-colors ${pet.favorite
+              ? 'bg-red-600 hover:bg-red-700'
+              : 'bg-gray-400 hover:bg-gray-500'
+              }`}
+          >
+            <Heart className={`h-4 w-4 mr-2 ${pet.favorite ? 'fill-current' : ''}`} />
+            <span className="text-xs font-medium">
+              {pet.favorite ? 'Улюблена' : 'Додати в улюблені'}
+            </span>
           </button>
         </div>
       </div>

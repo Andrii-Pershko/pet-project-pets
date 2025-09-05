@@ -60,7 +60,7 @@ export default function HomePage() {
         {/* Features Grid */}
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-base font-semibold leading-7 text-blue-600">
+            <h2 className="text-center text-base font-semibold leading-7 text-blue-600">
               Функції
             </h2>
             <p className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">
@@ -113,16 +113,18 @@ export default function HomePage() {
               >
                 <PawPrint className="h-4 w-4 mr-2" />
                 <span className="hidden sm:inline">Додати тварину</span>
-                <span className="sm:hidden">Додати</span>
+                <span className="sm:hidden">Додати тварину</span>
               </button>
-              <button
+              <a
+                target="_blank"
+                href="https://www.google.com/search?q=%D0%B2%D0%B5%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B0%D1%80%D0%BD%D0%B0+%D0%BA%D0%BB%D1%96%D0%BD%D1%96%D0%BA%D0%B0&sca_esv=38adde6e55f7a682&sxsrf=AE3TifP9DG7TUkWaZBgRwn9I-Xoic4sn4w:1757100456766&udm=1&lsack=qDm7aMXGLpXbwPAP7YWh2QQ&sa=X&ved=2ahUKEwjFur2krcKPAxWVLRAIHe1CKEsQjGp6BAglEAE&biw=1440&bih=690&dpr=2"
                 onClick={() => handleQuickAction('appointments')}
                 className="btn-responsive cursor-pointer flex items-center justify-center border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-blue-50 transition-colors"
               >
                 <Heart className="h-4 w-4 mr-2" />
                 <span className="hidden sm:inline">Записати до ветеринара</span>
                 <span className="sm:hidden">Ветеринар</span>
-              </button>
+              </a>
               <button
                 onClick={() => handleQuickAction('vaccination')}
                 className="btn-responsive cursor-pointer flex items-center justify-center border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-blue-50 transition-colors"

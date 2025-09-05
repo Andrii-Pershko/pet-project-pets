@@ -43,7 +43,7 @@ export function Navigation() {
         <div className="flex justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="flex-shrink-0 flex items-center" onClick={() => router.push('/')}>
+            <div className="cursor-pointer flex-shrink-0 flex items-center" onClick={() => router.push('/')}>
               <PawPrint className="h-8 w-8 text-blue-600" />
               <span className="ml-2 text-lg sm:text-xl font-bold text-gray-900">
                 PET Project
@@ -52,7 +52,14 @@ export function Navigation() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden xl:flex items-center space-x-4" style={{ display: 'none' }}>
+            <style jsx>{`
+              @media (min-width: 1100px) {
+                div {
+                  display: flex !important;
+                }
+              }
+            `}</style>
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = pathname === item.href;
@@ -61,8 +68,8 @@ export function Navigation() {
                   key={item.href}
                   href={item.href}
                   className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive
-                      ? 'bg-blue-100 text-blue-700'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    ? 'bg-blue-100 text-blue-700'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                     }`}
                 >
                   <Icon className="h-4 w-4 mr-2" />
@@ -94,7 +101,14 @@ export function Navigation() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden flex items-center">
+          <div className="flex items-center" style={{ display: 'none' }}>
+            <style jsx>{`
+              @media (max-width: 1099px) {
+                div {
+                  display: flex !important;
+                }
+              }
+            `}</style>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50"
@@ -110,7 +124,14 @@ export function Navigation() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-gray-200 py-4">
+          <div className="border-t border-gray-200 py-4" style={{ display: 'block' }}>
+            <style jsx>{`
+              @media (min-width: 1100px) {
+                div {
+                  display: none !important;
+                }
+              }
+            `}</style>
             <div className="space-y-2">
               {navItems.map((item) => {
                 const Icon = item.icon;
@@ -121,8 +142,8 @@ export function Navigation() {
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`flex items-center px-3 py-2 rounded-md text-base font-medium transition-colors ${isActive
-                        ? 'bg-blue-100 text-blue-700'
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      ? 'bg-blue-100 text-blue-700'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                       }`}
                   >
                     <Icon className="h-5 w-5 mr-3" />
